@@ -50,6 +50,11 @@
             <name>Matthieu Baechler</name>
             <email>matthieu.baechler@gmail.com</email>
         </developer>
+        <developer>
+            <id>aduprat</id>
+            <name>Antoine Duprat</name>
+            <email>aduprat@apache.org</email>
+        </developer>
     </developers>
 
     <dependencies>
