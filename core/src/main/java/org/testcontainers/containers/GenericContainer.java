@@ -517,7 +517,8 @@ public class GenericContainer extends FailureDetectingExternalResource implement
      * @return an IP address
      */
     public String getContainerIpAddress() {
-        return DockerClientFactory.instance().dockerHostIpAddress();
+        return Optional.ofNullable(DockerClientFactory.instance().dockerHostIpAddress())
+                .orElseGet(() -> getContainerInfo().getNetworkSettings().getIpAddress());
     }
 
     /**
