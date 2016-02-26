@@ -18,6 +18,7 @@ import org.testcontainers.dockerclient.DockerMachineConfigurationStrategy;
 import org.testcontainers.dockerclient.EnvironmentAndSystemPropertyConfigurationStrategy;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -89,7 +90,10 @@ public class DockerClientFactory {
      * @return the IP address of the host running Docker
      */
     private String dockerHostIpAddress(DockerClientConfig config) {
-        return DockerClientConfigUtils.getDockerHostIpAddress(config);
+        String hostIp = Optional.ofNullable(DockerClientConfigUtils.getDockerHostIpAddress(config))
+                .orElseGet(() -> "localhost");
+        LOGGER.info("Docker host IP: {}", hostIp);
+        return hostIp;
     }
 
     /**
